@@ -164,6 +164,7 @@ class Chest extends Transparent{
 				}
 			}
 
+			/*  Chests are disabled in creative mode */
 			if($player->isCreative() and $player->getServer()->limitedCreative){
 				return true;
 			}

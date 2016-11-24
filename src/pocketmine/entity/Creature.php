@@ -44,6 +44,8 @@ abstract class Creature extends Living{
 
 				$this->motionY -= $this->gravity;
 
+                // $level->getServer()->getLogger()->info("生成岩浆中 " . "floor($x)" . ", " . "floor($y)" . ", " . floor($z));
+                // $this->server->getLogger()->info("moving ".get_class($this)." x:($this->motionX) y:($this->motionY) z:($this->motionZ)");
 				$this->move($this->motionX, $this->motionY, $this->motionZ);
 
 				$friction = 1 - $this->drag;
@@ -51,6 +53,8 @@ abstract class Creature extends Living{
 				if($this->onGround and (abs($this->motionX) > 0.00001 or abs($this->motionZ) > 0.00001)){
 					$friction = $this->getLevel()->getBlock($this->temporalVector->setComponents((int) floor($this->x), (int) floor($this->y - 1), (int) floor($this->z) - 1))->getFrictionFactor() * $friction;
 				}
+
+                // $this->server->getLogger()->info("friction = {$friction}\tdrag = {$this->drag}");
 
 				$this->motionX *= $friction;
 				$this->motionY *= 1 - $this->drag;

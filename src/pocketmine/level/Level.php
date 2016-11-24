@@ -773,7 +773,8 @@ class Level implements ChunkManager, Metadatable{
 		$this->timings->entityTick->startTiming();
 		//Update entities that need update
 		Timings::$tickEntityTimer->startTiming();
-		foreach($this->updateEntities as $id => $entity){
+        // $this->server->getLogger()->info("Updating Entities - ".count($this->updateEntities));
+        foreach($this->updateEntities as $id => $entity){
 			if($entity->closed or !$entity->onUpdate($currentTick)){
 				unset($this->updateEntities[$id]);
 			}
@@ -2685,6 +2686,7 @@ class Level implements ChunkManager, Metadatable{
 	 * @throws LevelException
 	 */
 	public function removeEntity(Entity $entity){
+
 		if($entity->getLevel() !== $this){
 			throw new LevelException("Invalid Entity level");
 		}
